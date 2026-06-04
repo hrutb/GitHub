@@ -60,11 +60,11 @@ async function getProfile(){
                                                     </figure>
                                                     <figcaption>
                                                         <p>Followers: ${data.followers || '...'}</p>
-                                                        <p>Following: ${data.following}</p>
-                                                        <p>Bio: ${data.bio}</p>
-                                                        <p>public_Repos: ${data.public_repos}</p>
-                                                        <p>location: ${data.location}</p>
-
+                                                        <p>Following: ${data.following || '...'}</p>
+                                                        <p>Bio: ${data.bio || '...'}</p>
+                                                        <p>public_Repos: ${data.public_repos || '...'} </p>
+                                                        <p>Profile: <a href="${data.html_url || '...'}">GitHub profile</a></p>
+                                                        <p>location: ${data.location || '...'} </p>
                                                     </figcaption>
                                                     
                                                 </div>
