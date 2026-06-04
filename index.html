@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+    <body>
+        
+
+       <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <label for="userName">User name</label>
+
+                                <input  id="userName" placeholder="Enter github user name" class="form-control">
+                            </div>
+                            <button class="btn btn-block btn-outline-primary" onclick="getProfile()"> Search</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row mt-5" id="profileContainer">
+              <!-- <div class="col-md-6">
+                 <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4>username</h4>
+                        <p>login</p>
+                    </div>
+                    <div class="card-body"> 
+                        <div class="profileCard">
+                            <figure>
+                                <img src="avatar_url" alt="">
+                            </figure>
+                            <figcaption>
+                                <p>Followers:</p>
+                                <p>Following:</p>
+                                <p>Bio:</p>
+                                <p>public_Repos:</p>
+                            </figcaption>
+                            
+                        </div>
+                    </div>
+                 </div>
+              </div> -->
+            </div>
+
+            <div class="spinner d-none" id="spinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+       </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="./assets/js/app.js"></script>
+    </body>
+</html>
