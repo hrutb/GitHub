@@ -1,7 +1,7 @@
 // const userNameControl=document.getElementById('userName'); 
 const profileContainer=document.getElementById('profileContainer'); 
 const spinner= document.getElementById('spinner');
-
+const searchForm = document.getElementById('searchForm');
 
 
 
@@ -76,7 +76,8 @@ async function getProfile(){
         snackbar(err.msg, 'error')
    }
    finally{ 
-      spinner.classList.add('d-none')
+      spinner.classList.add('d-none'); 
+      searchForm.reset();
    }
 
 
