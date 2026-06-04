@@ -63,7 +63,7 @@ async function getProfile(){
                                                         <p>Following: ${data.following || '...'}</p>
                                                         <p>Bio: ${data.bio || '...'}</p>
                                                         <p>public_Repos: ${data.public_repos || '...'} </p>
-                                                        <p>Profile: <a href="${data.html_url || '...'}">GitHub profile</a></p>
+                                                        <p>Profile: <a href="${data.html_url || '...'}">Visit github</a></p>
                                                         <p>location: ${data.location || '...'} </p>
                                                     </figcaption>
                                                     
@@ -77,7 +77,7 @@ async function getProfile(){
    }
    finally{ 
       spinner.classList.add('d-none'); 
-      searchForm.reset();
+      searchForm.reset();;
    }
 
 
