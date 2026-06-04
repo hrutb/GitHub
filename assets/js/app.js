@@ -73,7 +73,7 @@ async function getProfile(){
                                     </div>`
 
    }catch(err){ 
-       
+        snackbar(err.msg, 'error')
    }
    finally{ 
       spinner.classList.add('d-none')
