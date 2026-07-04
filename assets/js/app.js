@@ -33,7 +33,7 @@ async function getProfile(){
    try{ 
    
        const userUrl = `https://api.github.com/users/${userName}`;
-         const User_Repo_url =`https://api.github.com/users/${userName}/repos?sorted=created`;
+         const User_Repo_url =`https://api.github.com/users/${userName}/repos?sort=created`;
                       
                const promiseArr =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
            
