@@ -26,11 +26,7 @@ const makeApiCall = async(ApiUrl)=>{
 
 async function getProfile(){
     const userName = document.getElementById('userName').value
-     if(!userName){ 
-           snackbar('Enter user Name', 'error');
-           return;
-     }
-
+    
 
    spinner.classList.remove('d-none');
 
