@@ -38,8 +38,8 @@ async function getProfile(){
                const promiseArr =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
            
                          
-              console.log(repoData);
-              console.log(userData);
+              console.log(promiseArr);
+              console.log();
 
            
      if(!result.ok){ 
