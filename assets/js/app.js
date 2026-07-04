@@ -28,54 +28,21 @@ async function getProfile(){
     const userName = document.getElementById('userName').value
     
 
-   spinner.classList.remove('d-none');
-
-   try{ 
-   
-       const userUrl = `https://api.github.com/users/${userName}`;
-         const User_Repo_url =`https://api.github.com/users/${userName}/repos?sort=created`;
-                      
-               const promiseArr =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
-           
-                         
-              console.log(promiseArr);
-              console.log();
-
-           
-        if(!result.ok){ 
-            snackbar('User not found', 'error');
-        }  
-          const  data = await promiseArr.json();
-       console.log(data); 
+    
+    try{ 
+        
+           const userUrl = `https://api.github.com/users/${userName}`;
+           const User_Repo_url =`https://api.github.com/users/${userName}/repos?sort=created`;
+         
+           const promiseArr =await Promise.all([makeApiCall(userUrl), makeApiCall(User_Repo_url)]);
+         
           
+           console.log(promiseArr);
+           spinner.classList.remove('d-none');
+             
+           profileCard(promiseArr);
 
-       // profileTemplate();
-      profileContainer.innerHTML = `<div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h4>${data.name || '...'}</h4>
-                                                <p>${data.login}</p>
-                                            </div>
-                                            <div class="card-body"> 
-                                                <div class="profileCard">
-                                                    <figure>
-                                                        <img src="${data.avatar_url}" alt="">
-                                                    </figure>
-                                                    <figcaption>
-                                                        <p>Followers: ${data.followers || 0}</p>
-                                                        <p>Following: ${data.following | 0}</p>
-                                                        <p>Bio: ${data.bio || '...'}</p>
-                                                        <p>public_Repos: ${data.public_repos || '...'} </p>
-                                                        <p>Profile: <a href="${data.html_url || '...'}">Visit github</a></p>
-                                                        <p>location: ${data.location || '...'} </p>
-                                                    </figcaption>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>`
-
-        searchForm.reset();
+        
    }catch(err){ 
              snackbar(err.msg, 'error')
    }
@@ -88,7 +55,57 @@ async function getProfile(){
 
 } 
 
+
 getProfile();
+
+
+
+
+
+
+
+
+
+function  profileCard(arr){ 
+                   
+            let userData = arr[0];
+            let repoData = arr[1];
+               console.log(repoData);
+
+            profileContainer.innerHTML = `<div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h4>${userData.name || '...'}</h4>
+                                                <p>${userData.login}</p>
+                                            </div>
+                                            <div class="card-body"> 
+                                                <div class="profileCard">
+                                                    <figure>
+                                                        <img src="${userData.avatar_url}" alt="">
+                                                    </figure>
+                                                    <figcaption>
+                                                        <p>Followers: ${userData.followers || 0}</p>
+                                                        <p>Following: ${userData.following | 0}</p>
+                                                        <p>Bio: ${userData.bio || '...'}</p>
+                                                        <p>public_Repos: ${userData.public_repos || '...'} </p>
+                                                        <p>Profile: <a href="${userData.html_url || '...'}">Visit github</a></p>
+                                                        <p>location: ${userData.location || '...'} </p>
+                                                    </figcaption>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`
+
+        searchForm.reset();
+}
+
+
+
+
+
+
+
 
 searchForm.addEventListener('submit', getProfile);
 
