@@ -26,6 +26,7 @@ async function getProfile(){
     const userName = document.getElementById('userName').value
      if(!userName){ 
            snackbar('Enter user Name', 'error');
+           return;
      }
 
 
@@ -36,10 +37,10 @@ async function getProfile(){
        const userUrl = `https://api.github.com/users/${userName}`;
          const User_Repo_url =`https://api.github.com/users/${userName}/repos?sorted=created`;
                       
-               const result =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
+               const {userData,repoData} =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
            
                          
-              console.log(userName);
+              console.log(repoData);
            
      if(!result.ok){ 
          snackbar('User not found', 'error');
