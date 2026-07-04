@@ -15,10 +15,12 @@ function snackbar(msg,icon){
 
 const makeApiCall = async(ApiUrl)=>{  
      const res = await fetch(ApiUrl);
-     if(!res.ok){ 
-          throw new Error(res);
-     } 
-       return await res.json();
+     if(res.ok){ 
+         return await res.json();
+        }else{
+
+            throw new Error(res);
+        } 
 }
 
 
@@ -37,10 +39,12 @@ async function getProfile(){
        const userUrl = `https://api.github.com/users/${userName}`;
          const User_Repo_url =`https://api.github.com/users/${userName}/repos?sorted=created`;
                       
-               const {userData,repoData} =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
+               const [userData,repoData] =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
            
                          
               console.log(repoData);
+              console.log(userData);
+
            
      if(!result.ok){ 
          snackbar('User not found', 'error');
