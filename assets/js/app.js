@@ -42,9 +42,9 @@ async function getProfile(){
               console.log();
 
            
-     if(!result.ok){ 
-         snackbar('User not found', 'error');
-     }  
+        if(!result.ok){ 
+            snackbar('User not found', 'error');
+        }  
           const  data = await promiseArr.json();
        console.log(data); 
           
