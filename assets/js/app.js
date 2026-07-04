@@ -79,12 +79,12 @@ async function getProfile(){
                                         </div>
                                     </div>`
 
+        searchForm.reset();
    }catch(err){ 
              snackbar(err.msg, 'error')
    }
    finally{ 
       spinner.classList.add('d-none'); 
-      searchForm.reset();
    }
 
 
