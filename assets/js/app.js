@@ -71,6 +71,7 @@ async function getProfile(){
                                                         <p>public_Repos: ${data.public_repos || '...'} </p>
                                                         <p>Profile: <a href="${data.html_url || '...'}">Visit github</a></p>
                                                         <p>location: ${data.location || '...'} </p>
+                                                         <p>${data.repoData[0]} ,${data.repoData[1]},${data.repoData[3]} </p>
                                                     </figcaption>
                                                     
                                                 </div>
@@ -93,7 +94,7 @@ async function getProfile(){
 
 getProfile();
 
-
+searchForm.addEventListener('submit', getProfile);
 
 // function profileTemplate(){
         
