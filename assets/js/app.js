@@ -35,7 +35,7 @@ async function getProfile(){
        const userUrl = `https://api.github.com/users/${userName}`;
          const User_Repo_url =`https://api.github.com/users/${userName}/repos?sorted=created`;
                       
-               const [userData,repoData] =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
+               const promiseArr =[makeApiCall(userUrl), makeApiCall(User_Repo_url)];
            
                          
               console.log(repoData);
@@ -45,8 +45,9 @@ async function getProfile(){
      if(!result.ok){ 
          snackbar('User not found', 'error');
      }  
-          const  data = await result.json();
-       console.log(data);
+          const  data = await promiseArr.json();
+       console.log(data); 
+          
 
        // profileTemplate();
       profileContainer.innerHTML = `<div class="col-md-6">
@@ -67,7 +68,6 @@ async function getProfile(){
                                                         <p>public_Repos: ${data.public_repos || '...'} </p>
                                                         <p>Profile: <a href="${data.html_url || '...'}">Visit github</a></p>
                                                         <p>location: ${data.location || '...'} </p>
-                                                         <p>${data.repoData[0]} ,${data.repoData[1]},${data.repoData[3]} </p>
                                                     </figcaption>
                                                     
                                                 </div>
