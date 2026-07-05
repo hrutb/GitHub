@@ -32,7 +32,7 @@ async function getProfile(){
     try{ 
         
            const userUrl = `https://api.github.com/users/${userName}`;
-           const User_Repo_url =`https://api.github.com/users/${userName}/repos?per_page=5`;
+           const User_Repo_url =`https://api.github.com/users/${userName}/repos?sort=created&per_page=5`;
          
            const promiseArr =await Promise.all([makeApiCall(userUrl), makeApiCall(User_Repo_url)]);
          
@@ -43,8 +43,8 @@ async function getProfile(){
            profileCard(promiseArr);
 
         
-   }catch(err){ 
-             snackbar(err.msg, 'error')
+   }catch{ 
+             snackbar("Failed to load", 'error')
    }
    finally{ 
       spinner.classList.add('d-none'); 
@@ -68,11 +68,20 @@ getProfile();
 
 function  profileCard(arr){ 
                    
-            let userData = arr[0];
+            let userData = arr[0]; 
+                  console.log(userData);
             let repoData = arr[1];
                console.log(repoData);
 
-            profileContainer.innerHTML = `<div class="col-md-6">
+
+            let repoHTML = " "
+                repoData.forEach(ele=> {
+                     repoHTML += `<a href="${ele.html_url}" target="_blank" class="btn btn-outlinr-primary btn-sm- mt-1">
+                                  ${ele.name}  
+                                 </a>`
+                    });
+
+            profileContainer.innerHTML = `<div class="col-md-6 offset-md-3">
                                         <div class="card">
                                             <div class="card-header d-flex justify-content-between align-items-center">
                                                 <h4>${userData.name || '...'}</h4>
@@ -90,6 +99,11 @@ function  profileCard(arr){
                                                         <p>public_Repos: ${userData.public_repos || '...'} </p>
                                                         <p>Profile: <a href="${userData.html_url || '...'}">Visit github</a></p>
                                                         <p>location: ${userData.location || '...'} </p>
+                                                         
+                                                        <div class="mt-3">
+                                                            ${repoHTML}
+                                                        </div>
+                                                        
                                                     </figcaption>
                                                     
                                                 </div>
